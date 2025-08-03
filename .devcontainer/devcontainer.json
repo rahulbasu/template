@@ -1,0 +1,43 @@
+{
+  "name": "Template Devcontainer",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "configureZshAsDefaultShell": true,
+      "installOhMyZsh": true,
+      "upgradePackages": true,
+      "username": "dev",
+      "userUid": "automatic",
+      "userGid": "automatic"
+    },
+    "ghcr.io/devcontainers/features/git:1": {
+      "ppa": true,
+      "version": "latest"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "rust-lang.rust-analyzer",
+        "ms-python.python",
+        "ms-python.flake8",
+        "ms-python.black-formatter",
+        "charliermarsh.ruff",
+        "tamasfe.even-better-toml",
+        "serayuzgur.crates"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python3",
+        "rust-analyzer.server.path": "/usr/local/cargo/bin/rust-analyzer"
+      }
+    }
+  },
+  "postCreateCommand": "echo 'Development environment ready!'",
+  "remoteUser": "dev",
+  "mounts": [
+    "source=${localWorkspaceFolder}/.devcontainer/cache,target=/usr/local/cargo/registry,type=bind,consistency=cached"
+  ]
+}
